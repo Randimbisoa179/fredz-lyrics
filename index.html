@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fredz Lyrics 🎶</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'wave': 'wave 8s linear infinite',
+            'neon-pulse': 'neon-pulse 2s ease-in-out infinite alternate',
+            'text-gradient': 'text-gradient 4s linear infinite',
+            'hologram': 'hologram 8s linear infinite',
+            'scanline': 'scanline 16s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0) rotate(-1deg)' },
+              '50%': { transform: 'translateY(-12px) rotate(1deg)' },
+            },
+            wave: {
+              '0%': { 'background-position': '0% 50%' },
+              '50%': { 'background-position': '100% 50%' },
+              '100%': { 'background-position': '0% 50%' },
+            },
+            'neon-pulse': {
+              '0%': { 'text-shadow': '0 0 5px rgba(99, 102, 241, 0.5)' },
+              '100%': { 'text-shadow': '0 0 20px rgba(99, 102, 241, 0.9), 0 0 30px rgba(168, 85, 247, 0.7)' },
+            },
+            'text-gradient': {
+              '0%': { 'background-position': '0% 50%' },
+              '50%': { 'background-position': '100% 50%' },
+              '100%': { 'background-position': '0% 50%' },
+            },
+            hologram: {
+              '0%, 100%': { opacity: 0.8, 'box-shadow': '0 0 10px 2px rgba(99, 102, 241, 0.3)' },
+              '50%': { opacity: 1, 'box-shadow': '0 0 20px 5px rgba(168, 85, 247, 0.5)' },
+            },
+            scanline: {
+              '0%': { transform: 'translateY(-100%)' },
+              '100%': { transform: 'translateY(100%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
+
+    body {
+      font-family: 'Rajdhani', 'Poppins', sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(176, 229, 255, 0.7) 0%, rgba(224, 242, 254, 0.9) 90%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .dark body {
+      background: radial-gradient(circle at 10% 20%, rgba(15, 23, 42, 0.95) 0%, rgba(2, 6, 23, 1) 90%);
+    }
+
+    .cyber-glass {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px) saturate(200%);
+      -webkit-backdrop-filter: blur(20px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 42px 0 rgba(31, 38, 135, 0.25);
+      transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dark .cyber-glass {
+      background: rgba(8, 12, 30, 0.4);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      box-shadow: 0 8px 42px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    .cyber-glass::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: 0.5s;
+    }
+
+    .cyber-glass:hover::before {
+      left: 100%;
+    }
+
+    .song-card {
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    .song-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .song-card:hover {
+      transform: translateY(-8px) scale(1.02) rotateX(1deg);
+      box-shadow: 0 15px 35px -5px rgba(99, 102, 241, 0.5);
+    }
+
+    .song-card:hover::after {
+      opacity: 1;
+    }
+
+    .transition-3d {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .karaoke-line {
+      padding: 0.35rem 0.7rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0.85;
+      margin: 0.2rem 0;
+      transform-origin: left center;
+      position: relative;
+    }
+
+    .karaoke-active {
+      background: linear-gradient(90deg, rgba(99, 102, 241, 0.9) 0%, rgba(168, 85, 247, 0.9) 100%);
+      color: white !important;
+      font-weight: 600;
+      opacity: 1;
+      transform: scale(1.05) translateX(10px);
+      box-shadow: 0 4px 15px -3px rgba(99, 102, 241, 0.5);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+
+    .lyrics-container {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .lyrics-container.expanded {
+      max-height: 1200px;
+    }
+
+    .favorite-btn.active {
+      animation: pulse 0.6s ease, float 3s ease infinite;
+    }
+
+    .neon-text {
+      text-shadow: 0 0 10px rgba(99, 102, 241, 0.8);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .dark .neon-text {
+      text-shadow: 0 0 15px rgba(167, 139, 250, 0.9);
+    }
+
+    .progress-track {
+      height: 6px;
+      background: rgba(99, 102, 241, 0.2);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-track::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+      animation: scanline 2s linear infinite;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      width: 0%;
+      transition: width 0.1s linear;
+      background-size: 200% 100%;
+      animation: wave 4s linear infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-tab {
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-tab::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 3px 3px 0 0;
+    }
+
+    .nav-tab.active::before {
+      width: 100%;
+    }
+
+    .tab-content {
+      display: none;
+      transform: translateY(5px);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tab-content.active {
+      display: block;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 200% 200%;
+      animation: text-gradient 4s linear infinite;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(99, 102, 241, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .holographic-effect {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .holographic-effect::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(to bottom right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0) 40%,
+          rgba(255, 255, 255, 0.3) 45%,
+          rgba(255, 255, 255, 0) 50%,
+          rgba(255, 255, 255, 0) 100%);
+      transform: rotate(30deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: translateX(-100%) rotate(30deg);
+      }
+
+      100% {
+        transform: translateX(100%) rotate(30deg);
+      }
+    }
+
+    .cyber-button {
+      position: relative;
+      overflow: hidden;
+      border: none;
+      outline: none;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .cyber-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: 0.5s;
+    }
+
+    .cyber-button:hover::before {
+      left: 100%;
+    }
+
+    .media-player {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .media-player::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.1) 100%);
+      pointer-events: none;
+    }
+
+    .equalizer {
+      display: flex;
+      align-items: flex-end;
+      height: 30px;
+      gap: 3px;
+    }
+
+    .equalizer-bar {
+      width: 4px;
+      background: linear-gradient(to top, #6366f1, #a855f7);
+      border-radius: 2px;
+      animation: equalize 1.5s infinite ease-in-out;
+    }
+
+    @keyframes equalize {
+
+      0%,
+      100% {
+        height: 30%;
+      }
+
+      50% {
+        height: 100%;
+      }
+    }
+
+    .equalizer-bar:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .equalizer-bar:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .equalizer-bar:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .equalizer-bar:nth-child(4) {
+      animation-delay: 0.6s;
+    }
+
+    .equalizer-bar:nth-child(5) {
+      animation-delay: 0.8s;
+    }
+
+    .cyber-input {
+      position: relative;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .cyber-input:focus {
+      border-color: rgba(168, 85, 247, 0.6);
+      box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.2);
+    }
+
+    .cyber-input::placeholder {
+      color: rgba(7, 8, 8, 0.7);
+    }
+
+    .dark .cyber-input::placeholder {
+      color: rgba(26, 25, 25, 0.7);
+    }
+
+    .grid-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .file-input-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px dashed rgba(99, 102, 241, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .file-input-label:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(168, 85, 247, 0.7);
+    }
+
+    .file-name {
+      margin-top: 4px;
+      font-size: 12px;
+      color: #6366f1;
+      word-break: break-all;
+    }
+
+    .lyrics-controls {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .lyrics-controls button {
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    .lyrics-controls button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    .lyrics-controls .play-btn {
+      color: #10b981;
+    }
+
+    .lyrics-controls .stop-btn {
+      color: #ef4444;
+    }
+
+    .submit-success {
+      animation: submitPulse 1s ease;
+    }
+
+    @keyframes submitPulse {
+      0% {
+        background-color: rgba(16, 185, 129, 0.1);
+      }
+
+      50% {
+        background-color: rgba(16, 185, 129, 0.3);
+      }
+
+      100% {
+        background-color: rgba(16, 185, 129, 0.1);
+      }
+    }
+
+    /* Nouveaux styles */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      background: rgba(99, 102, 241, 0.2);
+      color: #6366f1;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    .tag-input {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .tag-input input {
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .stat-card {
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      background: linear-gradient(90deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .audio-preview {
+      width: 100%;
+      margin-top: 8px;
+      border-radius: 8px;
+    }
+
+    .edit-form {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .edit-form-content {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .dark .edit-form-content {
+      background: #1e293b;
+    }
+
+    .import-export-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .advanced-search {
+      margin-bottom: 16px;
+    }
+
+    .search-filters {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .filter-chip {
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(99, 102, 241, 0.1);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-chip.active {
+      background: #6366f1;
+      color: white;
+    }
+  </style>
+</head>
+
+<body class="p-4 md:p-6 text-gray-800 dark:text-gray-100 min-h-screen relative overflow-x-hidden">
+  <!-- Particules de fond -->
+  <div id="particles"></div>
+  <div class="grid-pattern"></div>
+
+  <div class="max-w-5xl mx-auto space-y-6 md:space-y-8 relative z-10">
+    <header class="flex justify-between items-center">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight gradient-text flex items-center gap-3">
+        <i class="fas fa-music animation-float"></i>
+        <span>FREDZ LYRICS</span>
+      </h1>
+      <div class="flex items-center gap-4">
+        <div id="equalizer" class="equalizer hidden md:flex">
+          <div class="equalizer-bar"></div>
+          <div class="equalizer-bar"></div>
+          <div class="equalizer-bar"></div>
+          <div class="equalizer-bar"></div>
+          <div class="equalizer-bar"></div>
+        </div>
+        <button id="toggleTheme" aria-label="Changer thème"
+          class="p-3 rounded-full bg-white/30 dark:bg-gray-800/50 text-gray-700 dark:text-gray-200 hover:bg-white/50 dark:hover:bg-gray-700/60 transition-3d shadow-lg cyber-glass hover:rotate-12 hover:scale-110">
+          <i class="fas fa-moon dark:hidden text-lg"></i>
+          <i class="fas fa-sun hidden dark:inline text-lg"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="flex items-center justify-center gap-1 p-1 rounded-xl cyber-glass">
+      <button data-tab="add" class="nav-tab active px-5 py-3 rounded-lg font-medium transition-3d hover:bg-white/20">
+        <i class="fas fa-plus-circle mr-2"></i>Ajouter
+      </button>
+      <button data-tab="library" class="nav-tab px-5 py-3 rounded-lg font-medium transition-3d hover:bg-white/20">
+        <i class="fas fa-compact-disc mr-2"></i>Bibliothèque
+      </button>
+      <button data-tab="favorites" class="nav-tab px-5 py-3 rounded-lg font-medium transition-3d hover:bg-white/20">
+        <i class="fas fa-star mr-2"></i>Favoris
+      </button>
+      <button data-tab="karaoke" class="nav-tab px-5 py-3 rounded-lg font-medium transition-3d hover:bg-white/20">
+        <i class="fas fa-microphone-alt mr-2"></i>Karaoké
+      </button>
+      <button data-tab="stats" class="nav-tab px-5 py-3 rounded-lg font-medium transition-3d hover:bg-white/20">
+        <i class="fas fa-chart-bar mr-2"></i>Stats
+      </button>
+    </nav>
+
+    <!-- Onglet Ajouter -->
+    <div id="add-tab" class="tab-content active">
+      <form id="addForm" class="cyber-glass rounded-2xl shadow-2xl p-6 space-y-5 transition-3d hover:shadow-3xl">
+        <div class="space-y-3">
+          <label for="title" class="block font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+            <i class="fas fa-heading text-indigo-500"></i>
+            <span>Titre de la chanson</span>
+          </label>
+          <input id="title" type="text" placeholder="Entrez le titre..." required
+            class="cyber-input w-full rounded-xl focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-600 px-5 py-3.5 text-gray-900 dark:text-gray-100 bg-white/50 dark:bg-gray-800/30 transition-3d cyber-glass focus:scale-[1.01] focus:shadow-lg" />
+        </div>
+
+        <div class="space-y-3">
+          <label for="artist" class="block font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+            <i class="fas fa-user text-indigo-500"></i>
+            <span>Artiste (optionnel)</span>
+          </label>
+          <input id="artist" type="text" placeholder="Entrez l'artiste..."
+            class="cyber-input w-full rounded-xl focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-600 px-5 py-3.5 text-gray-900 dark:text-gray-100 bg-white/50 dark:bg-gray-800/30 transition-3d cyber-glass focus:scale-[1.01] focus:shadow-lg" />
+        </div>
+
+        <div class="space-y-3">
+          <label for="lyrics" class="block font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+            <i class="fas fa-align-left text-purple-500"></i>
+            <span>Paroles</span>
+          </label>
+          <textarea id="lyrics" placeholder="Entrez les paroles ici..." required
+            class="cyber-input w-full rounded-xl focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-600 px-5 py-4 text-gray-900 dark:text-gray-100 bg-white/50 dark:bg-gray-800/30 transition-3d cyber-glass h-48 resize-none focus:scale-[1.01] focus:shadow-lg"></textarea>
+        </div>
+
+        <div class="space-y-3">
+          <label for="tags" class="block font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+            <i class="fas fa-tags text-pink-500"></i>
+            <span>Tags (séparés par des virgules)</span>
+          </label>
+          <div class="tag-input cyber-input rounded-xl px-5 py-3 bg-white/50 dark:bg-gray-800/30">
+            <input id="tags" type="text" placeholder="rock, pop, 80s..."
+              class="w-full bg-transparent outline-none text-gray-900 dark:text-gray-100" />
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <label class="block font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+            <i class="fas fa-music text-pink-500"></i>
+            <span>Fichier Audio/Video (optionnel)</span>
+          </label>
+          <label for="mediaFile" class="file-input-label">
+            <i class="fas fa-upload text-indigo-500"></i>
+            <span>Choisir un fichier</span>
+            <input id="mediaFile" type="file" accept="audio/*,video/*" class="hidden" />
+          </label>
+          <div id="fileName" class="file-name"></div>
+          <audio id="audioPreview" controls class="audio-preview hidden"></audio>
+        </div>
+
+        <button type="submit" id="submitBtn"
+          class="cyber-button bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl px-6 py-4 w-full transition-3d shadow-xl hover:shadow-2xl flex items-center justify-center gap-3 group hover:scale-[1.01]">
+          <i class="fas fa-plus-circle text-xl group-hover:rotate-90 transition-transform"></i>
+          <span class="group-hover:tracking-wide transition-all">AJOUTER LA CHANSON</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Onglet Bibliothèque -->
+    <div id="library-tab" class="tab-content">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 cyber-glass rounded-2xl shadow-lg p-5 transition-3d mb-6">
+        <div class="relative w-full sm:w-auto flex-1">
+          <select id="sortSelect"
+            class="cyber-input appearance-none px-5 py-3 pr-10 rounded-xl focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-600 text-gray-900 dark:text-gray-100 bg-white/50 dark:bg-gray-800/30 transition-3d cyber-glass w-full focus:scale-[1.01] focus:shadow-lg">
+            <option value="recent">Récents</option>
+            <option value="alpha">Alphabétique</option>
+            <option value="fav">Favoris</option>
+            <option value="artist">Par artiste</option>
+          </select>
+          <div class="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+            <i class="fas fa-chevron-down text-gray-500"></i>
+          </div>
+        </div>
+
+        <div class="relative flex-grow">
+          <input id="search" type="text" placeholder="Rechercher une chanson..."
+            class="cyber-input w-full rounded-xl focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-600 px-5 py-3 pl-12 text-gray-900 dark:text-gray-100 bg-white/50 dark:bg-gray-800/30 transition-3d cyber-glass focus:scale-[1.01] focus:shadow-lg" />
+          <i class="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+        </div>
+      </div>
+
+      <div class="advanced-search cyber-glass rounded-2xl p-5 mb-6">
+        <div class="flex items-center justify-between">
+          <h3 class="font-medium flex items-center gap-2">
+            <i class="fas fa-filter text-indigo-500"></i>
+            <span>Filtres avancés</span>
+          </h3>
+          <button id="clearFilters" class="text-sm text-indigo-500 hover:text-indigo-700">Effacer tout</button>
+        </div>
+        <div class="search-filters">
+          <div class="filter-chip" data-filter="favorite">Favoris</div>
+          <div class="filter-chip" data-filter="withMedia">Avec média</div>
+          <div class="filter-chip" data-filter="recent">Récent (7 jours)</div>
+        </div>
+        <div class="mt-3">
+          <label for="tagFilter" class="block text-sm mb-1">Filtrer par tag:</label>
+          <input id="tagFilter" type="text" placeholder="rock, pop..."
+            class="cyber-input w-full rounded-xl px-4 py-2 text-sm" />
+        </div>
+      </div>
+
+      <div id="songList" class="grid grid-cols-1 gap-5 md:gap-6"></div>
+
+      <div class="import-export-buttons mt-6">
+        <button id="exportBtn" class="cyber-button bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-xl">
+          <i class="fas fa-file-export mr-2"></i>Exporter les données
+        </button>
+        <button id="importBtn" class="cyber-button bg-purple-600 hover:bg-purple-700 text-white px-5 py-3 rounded-xl">
+          <i class="fas fa-file-import mr-2"></i>Importer des données
+        </button>
+        <input type="file" id="importFile" accept=".json" class="hidden" />
+      </div>
+    </div>
+
+    <!-- Onglet Favoris -->
+    <div id="favorites-tab" class="tab-content">
+      <div class="cyber-glass rounded-2xl shadow-lg p-6 text-center transition-3d hover:shadow-xl">
+        <h2 class="text-2xl font-bold mb-6 gradient-text">
+          <i class="fas fa-star mr-3"></i>VOS CHANSONS FAVORITES
+        </h2>
+        <div id="favoritesList" class="grid grid-cols-1 gap-5 md:gap-6"></div>
+      </div>
+    </div>
+
+    <!-- Onglet Karaoké -->
+    <div id="karaoke-tab" class="tab-content">
+      <div class="cyber-glass rounded-2xl shadow-lg p-6 transition-3d hover:shadow-xl">
+        <h2 class="text-2xl font-bold mb-6 gradient-text">
+          <i class="fas fa-microphone-alt mr-3"></i>MODE KARAOKÉ
+        </h2>
+
+        <!-- Contrôles Karaoké -->
+        <div id="karaokeControls" class="cyber-glass rounded-2xl p-5 mb-6">
+          <div class="flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <button id="playPauseBtn"
+                class="cyber-button p-3 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white transition-3d hover:scale-110">
+                <i class="fas fa-play text-xl" id="playPauseIcon"></i>
+              </button>
+              <button id="stopBtn"
+                class="cyber-button p-3 rounded-full bg-gray-600 hover:bg-gray-700 text-white transition-3d hover:scale-110">
+                <i class="fas fa-stop text-xl"></i>
+              </button>
+              <button id="restartBtn"
+                class="cyber-button p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition-3d hover:scale-110">
+                <i class="fas fa-redo text-xl"></i>
+              </button>
+              <button id="speedDownBtn"
+                class="cyber-button p-2 rounded-full bg-gray-500/30 hover:bg-gray-600/50 text-white">
+                <i class="fas fa-minus"></i>
+              </button>
+              <span id="speedValue" class="text-sm font-mono px-2">1x</span>
+              <button id="speedUpBtn"
+                class="cyber-button p-2 rounded-full bg-gray-500/30 hover:bg-gray-500/30 hover:bg-gray-600/50 text-white">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between mt-4">
+            <button id="syncMediaBtn"
+              class="cyber-button flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl">
+              <i class="fas fa-link mr-1"></i>Synchroniser avec le média
+            </button>
+            <span id="mediaTime" class="text-sm font-mono">0:00 / 0:00</span>
+          </div>
+        </div>
+
+        <!-- Barre de progression -->
+        <div class="progress-track mt-4 w-full">
+          <div class="progress-bar"></div>
+        </div>
+
+        <!-- Sélecteur de chanson -->
+        <div class="mt-6">
+          <label for="karaokeSongSelect" class="block font-medium mb-2">
+            <i class="fas fa-compact-disc mr-2"></i>Choisir une chanson
+          </label>
+          <select id="karaokeSongSelect"
+            class="cyber-input w-full rounded-xl px-5 py-3 bg-white/50 dark:bg-gray-800/30">
+            <option value="">-- Choisir une chanson --</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Affichage des paroles pour le karaoké -->
+      <div id="karaokeLyricsContainer" class="cyber-glass rounded-2xl p-6 mt-6 hidden">
+        <h3 id="karaokeSongTitle" class="text-xl font-bold mb-4"></h3>
+        <div id="karaokeLyricsContent" class="space-y-2 max-h-[60vh] overflow-y-auto"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Onglet Statistiques -->
+  <div id="stats-tab" class="tab-content">
+    <div class="cyber-glass rounded-2xl shadow-lg p-6 transition-3d hover:shadow-xl">
+      <h2 class="text-2xl font-bold mb-6 gradient-text">
+        <i class="fas fa-chart-bar mr-3"></i>STATISTIQUES
+      </h2>
+      <div class="text-center py-8">
+        <i class="fas fa-spinner fa-spin text-4xl text-indigo-500 mb-4"></i>
+        <p>Chargement des statistiques...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lecteur média caché -->
+  <div id="mediaPlayerContainer" class="hidden">
+    <audio id="mediaPlayer" controls class="w-full"></audio>
+  </div>
+
+  <!-- Compteur de chansons -->
+  <div class="fixed bottom-4 right-4 bg-indigo-600 text-white px-3 py-2 rounded-full text-sm shadow-lg">
+    <span id="songCount">0 chansons</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
